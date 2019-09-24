@@ -1,15 +1,15 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, KeyboardAvoidingView } from 'react-native';
 import Constants from 'expo-constants';
 import Home from "./screens/Home";
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
 
       <Home/>
 
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -18,6 +18,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'yellow',
     alignItems: 'center',
-    marginTop: Constants.statusBarHeight
+    paddingTop: Constants.statusBarHeight
   },
 });

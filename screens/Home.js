@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { View, Text, FlatList, Button, TextInput } from 'react-native';
+import { View, Text, FlatList, Button, Switch } from 'react-native';
+import TextInput from "../kitui/TextInput";
 import MovieItem from '../components/MovieItem';
 
 class Home extends Component {
@@ -23,11 +24,12 @@ class Home extends Component {
   }
 
   addMovie() {
-    const movie =  { title: 'Terminator 6', year: 2019 };
+    const movie =  { title: this.state.title, year: this.state.year };
     this.setState({
       movies: [...this.state.movies, movie]
     });
   }
+
 
   render() {
     return (
@@ -45,11 +47,11 @@ class Home extends Component {
         <TextInput onChangeText={text => this.setState({ year: text })}
                    value={this.state.year.toString()}
                    keyboardType='numeric'/>
+         <Switch/>
         <Button onPress={() => this.addMovie()} title='Ajouter un film'/>
       </View>
     );
   }
 }
-
 
 export default Home;
