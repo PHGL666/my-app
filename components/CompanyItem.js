@@ -6,7 +6,6 @@ class CompanyItem extends Component {
     return (
       <View>
         <Text>{this.props.company.name}</Text>
-        <Text>{this.props.company.founded_year}</Text>
       </View>
     );
   }
