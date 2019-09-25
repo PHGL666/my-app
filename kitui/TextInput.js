@@ -4,7 +4,7 @@ import { TextInput as DefaultTextInput } from 'react-native';
 class TextInput extends Component {
   render() {
     return (
-      <DefaultTextInput style={{ backgroundColor: 'white', padding: 10 }} {...this.props}/>
+      <DefaultTextInput style={{ backgroundColor: 'white', borderColor: '#ccc', borderWidth: 1, padding: 10 }} {...this.props}/>
     );
   }
 }
