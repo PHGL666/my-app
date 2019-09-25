@@ -1,27 +1,29 @@
 import React, {Component} from 'react';
 import { View, Text, FlatList, Button, Switch } from 'react-native';
 import TextInput from "../kitui/TextInput";
-import MovieItem from '../components/MovieItem';
+import CompanyItem from '../components/CompanyItem';
 
 class Home extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      movies: [],
+      companies: [],
       title: '',
-      year: new Date().getFullYear()
+      year: new Date().getFullYear(),
+      page: 1
     };
   }
 
   componentDidMount() {
-    this.setState({
-      movies: [
-        { title: 'Titanic', year: 1998 },
-        { title: 'Intouchables', year: 2015 }
-      ]
-    });
+    this.fetchCompanies();
   }
+
+  fetchCompanies() {
+    fetch(process.env.API_URL + '/companies?page=' + this.state.page)
+      .then(response => response.json())
+      .then(companies => this.setState({ companies: [...this.state.companies, ...companies] }))
+    }
 
   addMovie() {
     const movie =  { title: this.state.title, year: this.state.year };
@@ -36,10 +38,11 @@ class Home extends Component {
       <View style={{ flex: 1, justifyContent: 'space-around', alignItems: 'center' }}>
         <Text>Home</Text>
         <View style={{ height: 250 }}>
-          <FlatList data={this.state.movies}
-                    renderItem={({item}) => <MovieItem movie={item}/>}
+          <FlatList data={this.state.companies}
+                    renderItem={({item}) => <CompanyItem company={item}/>}
                     keyExtractor={(item, index) => index.toString()}
           />
+          <Button onPress={() => this.setState({ page: this.state.page + 1 }, () => this.fetchCompanies())} title='Charger plus'/>
         </View>
         <TextInput onChangeText={text => this.setState({ title: text })}
                    value={this.state.title}
