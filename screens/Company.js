@@ -1,11 +1,29 @@
 import React, {Component} from 'react';
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
+import styles from "../Stylesheet";
 
 class Company extends Component {
 
   static navigationOptions = ({ navigation }) => {
+    const company = navigation.getParam('company');
     return {
-      title: navigation.getParam('company').name
+      title: company.name,
+      headerRight: (
+        <View style={styles.btnHeaderContainer}>
+          <TouchableOpacity style={[ styles.btn, styles.btnHeader, styles.btnDanger ]} onPress={() => {
+            fetch(process.env.API_URL + '/companies/' + company._id, { method: 'delete' })
+              .then(response => response.json())
+              .then(data => navigation.navigate('Search'))
+              .catch(err => console.log(err))
+            ;
+          }} >
+            <Text style={styles.btnDangerText}>Supprimer</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[ styles.btn, styles.btnHeader, styles.btnWarning ]} onPress={() => navigation.navigate('EditCompany', { company: company })}>
+            <Text style={styles.btnWarningText}>Modifier</Text>
+          </TouchableOpacity>
+        </View>
+      )
     }
   };
 
@@ -16,9 +34,6 @@ class Company extends Component {
     return (
       <View>
         <Text>{company.name}</Text>
-        <Text>{company.founded_year}</Text>
-        <Text>{company.founded_month}</Text>
-        <Text>{company.homepage_url}</Text>
       </View>
     );
   }
