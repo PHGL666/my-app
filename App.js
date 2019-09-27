@@ -1,9 +1,7 @@
 import React from 'react';
 import { StyleSheet, KeyboardAvoidingView } from 'react-native';
 import Constants from 'expo-constants';
-import AppNavigator from "./navigation/AppNavigator";
-
-export default function App() {
+import AppNavigator from "./navigation/AppNavigator";export default function App() {
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
 
@@ -16,6 +14,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#ffff00',
     paddingTop: Constants.statusBarHeight
   },
 });

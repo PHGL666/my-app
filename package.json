@@ -10,6 +10,9 @@
   "dependencies": {
     "expo": "^35.0.0",
     "expo-constants": "^7.0.0",
+    "expo-location": "^7.0.0",
+    "expo-permissions": "^7.0.0",
+    "expo-sensors": "^7.0.0",
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
@@ -18,7 +21,8 @@
     "react-native-web": "^0.11.7",
     "react-navigation": "^4.0.9",
     "react-navigation-drawer": "^2.2.2",
-    "react-navigation-stack": "^1.9.0"
+    "react-navigation-stack": "^1.9.0",
+    "react-navigation-tabs": "^2.5.5"
   },
   "devDependencies": {
     "babel-plugin-inline-dotenv": "^1.5.0",

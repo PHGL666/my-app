@@ -6,6 +6,10 @@ import {LinearGradient} from "expo-linear-gradient";
 
 class Home extends Component {
 
+  static navigationOptions = {
+    drawerLabel: 'Accueil'
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -21,9 +25,10 @@ class Home extends Component {
   }
 
   fetchCompanies() {
+    console.log(process.env.API_URL);
     fetch(process.env.API_URL + '/companies?page=' + this.state.page)
       .then(response => response.json())
-      .then(companies => this.setState({ companies: [...this.state.companies, ...companies] }))
+      .then(data => this.setState({ companies: [...this.state.companies, ...data.companies] }))
   }
 
   addMovie() {
